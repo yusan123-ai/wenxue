@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { Work, Category } from '@/types/work';
-import initialWorksData from '@/data/works.json';
+import initialWorksData from '@/data/works';
 
 const STORAGE_KEY = 'wenxue_works';
 

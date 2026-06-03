@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 import { useWorksManager } from '@/hooks/useWorksManager';
 import type { Work, Category } from '@/types/work';
-import initialWorksData from '@/data/works.json';
+import initialWorksData from '@/data/works';
 
 interface WorksContextType {
   works: Work[];
