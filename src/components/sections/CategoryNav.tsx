@@ -72,7 +72,7 @@ const CategoryNav = () => {
                       {IconComponent && (
                         <IconComponent
                           className="w-7 h-7 transition-colors duration-300"
-                          style={{ color: category.color }}
+                          style={{ color: category.color } as React.CSSProperties}
                         />
                       )}
                     </div>

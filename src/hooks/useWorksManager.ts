@@ -55,7 +55,7 @@ export function useWorksManager(): UseWorksManagerReturn {
     if (storedWorks && storedWorks.length > 0) {
       setWorks(storedWorks);
     } else {
-      setWorks(initialWorksData.works);
+      setWorks(initialWorksData.works as unknown as Work[]);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(initialWorksData.works));
     }
   }, [loadFromLocalStorage]);
