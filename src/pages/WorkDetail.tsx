@@ -11,27 +11,28 @@ import {
   ChevronRight,
   BookOpen
 } from 'lucide-react'
-import worksData from '@/data/works.json'
 import ReadingProgress from '@/components/sections/ReadingProgress'
 import { formatDate, getCategoryColor } from '@/utils/helpers'
 import type { Work } from '@/types/work'
+import { useWorks } from '@/context/WorksContext'
 
 export default function WorkDetail() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+  const { works } = useWorks()
 
   const work = useMemo(() => {
-    return worksData.works.find((w) => w.id === id) as Work | undefined
-  }, [id])
+    return works.find((w) => w.id === id)
+  }, [works, id])
 
   const currentIndex = useMemo(() => {
     if (!work) return -1
-    return worksData.works.findIndex((w) => w.id === id)
-  }, [work, id])
+    return works.findIndex((w) => w.id === id)
+  }, [works, work, id])
 
-  const prevWork = currentIndex > 0 ? (worksData.works[currentIndex - 1] as Work) : null
-  const nextWork = currentIndex < worksData.works.length - 1 
-    ? (worksData.works[currentIndex + 1] as Work) 
+  const prevWork = currentIndex > 0 ? (works[currentIndex - 1] as Work) : null
+  const nextWork = currentIndex < works.length - 1
+    ? (works[currentIndex + 1] as Work)
     : null
 
   if (!work) {
@@ -127,14 +128,14 @@ export default function WorkDetail() {
               <Calendar className="w-4 h-4" />
               <span>{formatDate(work.createdAt)}</span>
             </div>
-            
+
             <span className="text-ink-200">|</span>
-            
+
             <div className="flex items-center gap-1.5">
               <FileText className="w-4 h-4" />
               <span>{work.wordCount}字</span>
             </div>
-            
+
             {work.tags.length > 0 && (
               <>
                 <span className="text-ink-200">|</span>

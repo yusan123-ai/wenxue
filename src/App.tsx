@@ -4,19 +4,22 @@ import Home from "@/pages/Home";
 import WorksList from "@/pages/WorksList";
 import WorkDetail from "@/pages/WorkDetail";
 import AdminPage from "@/pages/AdminPage";
+import { WorksProvider } from "@/context/WorksContext";
 
 export default function App() {
   return (
-    <Router basename="/wenxue">
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="works" element={<WorksList />} />
-          <Route path="works/:category" element={<WorksList />} />
-          <Route path="work/:id" element={<WorkDetail />} />
-        </Route>
-        <Route path="/admin" element={<AdminPage />} />
-      </Routes>
-    </Router>
+    <WorksProvider>
+      <Router basename="/wenxue">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="works" element={<WorksList />} />
+            <Route path="works/:category" element={<WorksList />} />
+            <Route path="work/:id" element={<WorkDetail />} />
+          </Route>
+          <Route path="/admin" element={<AdminPage />} />
+        </Routes>
+      </Router>
+    </WorksProvider>
   );
 }

@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar } from 'lucide-react';
-import worksData from '@/data/works.json';
+import { useWorks } from '@/context/WorksContext';
 
 const FeaturedWorks = () => {
-  const featuredWorks = worksData.works
+  const { works, categories: catConfig } = useWorks();
+  const featuredWorks = works
     .filter((work) => work.isFeatured)
     .slice(0, 3);
 
@@ -42,9 +43,9 @@ const FeaturedWorks = () => {
                       className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium tracking-wide"
                       style={{
                         backgroundColor:
-                          `${worksData.categories[work.category as keyof typeof worksData.categories]?.color}15`,
+                          `${catConfig[work.category as keyof typeof catConfig]?.color}15`,
                         color:
-                          worksData.categories[work.category as keyof typeof worksData.categories]?.color || '#2C2C2C',
+                          catConfig[work.category as keyof typeof catConfig]?.color || '#2C2C2C',
                       }}
                     >
                       {work.categoryLabel}

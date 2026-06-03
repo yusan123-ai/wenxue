@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Feather, BookOpen, ScrollText } from 'lucide-react';
-import worksData from '@/data/works.json';
+import { useWorks } from '@/context/WorksContext';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string; color?: string }>> = {
   feather: Feather,
@@ -10,7 +10,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; color?: 
 };
 
 const CategoryNav = () => {
-  const categories = Object.entries(worksData.categories);
+  const { works, categories: catConfig } = useWorks();
+  const categoryEntries = Object.entries(catConfig);
 
   return (
     <section className="section-padding bg-cream-100">
@@ -27,9 +28,9 @@ const CategoryNav = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {categories.map(([key, category], index) => {
+          {categoryEntries.map(([key, category], index) => {
             const IconComponent = iconMap[category.icon];
-            const workCount = worksData.works.filter(
+            const workCount = works.filter(
               (work) => work.category === key
             ).length;
 

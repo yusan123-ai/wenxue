@@ -2,9 +2,9 @@ import { useState, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Home, BookOpen } from 'lucide-react'
-import worksData from '@/data/works.json'
 import WorkGrid from '@/components/sections/WorkGrid'
 import type { Category, Work } from '@/types/work'
+import { useWorks } from '@/context/WorksContext'
 
 const categories: { key: Category | 'all'; label: string }[] = [
   { key: 'all', label: '全部' },
@@ -15,22 +15,21 @@ const categories: { key: Category | 'all'; label: string }[] = [
 
 export default function WorksList() {
   const { category } = useParams<{ category?: string }>()
+  const { works, categories: catConfig } = useWorks()
   const [activeCategory, setActiveCategory] = useState<Category | 'all'>(
     (category as Category) || 'all'
   )
 
   const filteredWorks = useMemo(() => {
     if (activeCategory === 'all') {
-      return worksData.works as Work[]
+      return works
     }
-    return worksData.works.filter(
-      (work) => work.category === activeCategory
-    ) as Work[]
-  }, [activeCategory])
+    return works.filter((work) => work.category === activeCategory)
+  }, [works, activeCategory])
 
-  const pageTitle = activeCategory === 'all' 
-    ? '文学作品' 
-    : worksData.categories[activeCategory as Category]?.name || '文学作品'
+  const pageTitle = activeCategory === 'all'
+    ? '文学作品'
+    : catConfig[activeCategory as Category]?.name || '文学作品'
 
   return (
     <div className="min-h-screen bg-cream-100">
@@ -75,7 +74,7 @@ export default function WorksList() {
                 </button>
               ))}
             </div>
-            
+
             <span className="text-ink-400 text-sm">
               共 <span className="text-vermilion-600 font-medium">{filteredWorks.length}</span> 篇作品
             </span>
