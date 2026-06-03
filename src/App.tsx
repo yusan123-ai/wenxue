@@ -7,7 +7,7 @@ import AdminPage from "@/pages/AdminPage";
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/wenxue">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
