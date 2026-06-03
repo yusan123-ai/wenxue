@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Feather, BookOpen, ScrollText } from 'lucide-react';
 import worksData from '@/data/works.json';
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string; color?: string }>> = {
   feather: Feather,
   'book-open': BookOpen,
   'scroll-text': ScrollText,
@@ -72,7 +72,7 @@ const CategoryNav = () => {
                       {IconComponent && (
                         <IconComponent
                           className="w-7 h-7 transition-colors duration-300"
-                          style={{ color: category.color } as React.CSSProperties}
+                          color={category.color}
                         />
                       )}
                     </div>
