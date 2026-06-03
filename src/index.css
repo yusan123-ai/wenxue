@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Noto+Serif+SC:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream-100 text-ink-600 font-body;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  ::selection {
+    @apply bg-vermilion-500/20 text-vermilion-700;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-vermilion-600 to-bronze-500 bg-clip-text text-transparent;
+  }
+
+  .border-elegant {
+    @apply border border-cream-300;
+  }
+
+  .shadow-elegant {
+    @apply shadow-card hover:shadow-card-hover transition-shadow duration-300;
+  }
+
+  .link-underline {
+    @apply relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-medium tracking-wide text-vermilion-600 border border-vermilion-600 rounded-sm bg-transparent transition-all duration-300 hover:bg-vermilion-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-vermilion-500 focus:ring-offset-2 focus:ring-offset-cream-100;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-medium tracking-wide text-ink-600 underline decoration-1 underline-offset-4 decoration-ink-400/50 hover:decoration-ink-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ink-500 focus:ring-offset-2 focus:ring-offset-cream-100;
+  }
+
+  .card-work {
+     @apply relative overflow-hidden rounded-sm bg-white border-elegant shadow-elegant cursor-pointer;
+   }
+
+  .reading-content {
+    @apply max-w-none;
+    
+    h1, h2, h3, h4, h5, h6 {
+      @apply font-display text-ink-700;
+    }
+    
+    p {
+      @apply text-ink-600 leading-relaxed mb-6;
+    }
+    
+    blockquote {
+      @apply border-l-4 border-bronze-400 pl-6 italic text-ink-500 bg-cream-100 py-4 pr-4 my-8 rounded-r-sm;
+    }
+  }
+
+  .decorative-line {
+    @apply w-16 h-0.5 bg-gradient-to-r from-vermilion-500 to-bronze-400;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-stagger > * {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+  .animate-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+  .animate-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+  .animate-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+  .animate-stagger > *:nth-child(5) { animation-delay: 0.5s; }
+  .animate-stagger > *:nth-child(6) { animation-delay: 0.6s; }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E0D6C8;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4D4D4;
+}
