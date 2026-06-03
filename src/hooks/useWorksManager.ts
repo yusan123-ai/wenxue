@@ -28,7 +28,7 @@ export interface UseWorksManagerReturn {
   exportToJSON: () => void;
   importFromJSON: (file: File) => Promise<void>;
   saveToLocalStorage: () => void;
-  loadFromLocalStorage: Work[] | null;
+  loadFromLocalStorage: () => Work[] | null;
 }
 
 export function useWorksManager(): UseWorksManagerReturn {

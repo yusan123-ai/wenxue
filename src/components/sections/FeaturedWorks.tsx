@@ -44,7 +44,7 @@ const FeaturedWorks = () => {
                         backgroundColor:
                           `${worksData.categories[work.category as keyof typeof worksData.categories]?.color}15`,
                         color:
-                          worksData.categories[work.category as keyof typeof work.categories]?.color || '#2C2C2C',
+                          worksData.categories[work.category as keyof typeof worksData.categories]?.color || '#2C2C2C',
                       }}
                     >
                       {work.categoryLabel}
